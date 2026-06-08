@@ -1,0 +1,214 @@
+<!-- 
+  Google Ads Enhanced Conversions - Custom HTML Tag
+  
+  USAGE:
+  1. Copy this entire script
+  2. In Google Tag Manager, create a new tag:
+     - Tag Type: Custom HTML
+     - Trigger: All Pages (or specific pages with forms)
+  3. Paste this script into the HTML field
+  4. Save and publish
+  
+  TESTING:
+  1. Use Google Tag Assistant (Tag Manager preview mode)
+  2. Submit a form and check if 'form_submit' event appears
+  3. Verify enhanced_conversion_data contains: email, phone_number, first_name, last_name
+  
+  GOOGLE ADS CONVERSION TAG SETUP:
+  1. In GTM, create a Google Ads Conversion Tracking tag
+  2. Set trigger to: Event equals form_submit
+  3. Enable "Enhanced Conversions" in the tag settings
+  4. Select "Use data from data layer"
+  5. The enhanced_conversion_data will be automatically detected
+-->
+
+<script>
+(function () {
+  'use strict';
+
+  window.dataLayer = window.dataLayer || [];
+
+  /* -----------------------------
+     Helpers
+  ----------------------------- */
+
+  function normalizeEmail(email) {
+    return email ? email.trim().toLowerCase() : '';
+  }
+
+  function formatPhone(phone) {
+    // Remove all non-digit characters except +
+    return phone ? phone.replace(/[^\d+]/g, '') : '';
+  }
+
+  function parseName(fullName) {
+    if (!fullName) return { first: '', last: '' };
+    var parts = fullName.trim().split(/\s+/);
+    return {
+      first: parts[0] || '',
+      last: parts.slice(1).join(' ') || ''
+    };
+  }
+
+  /* -----------------------------
+     Extract form data
+  ----------------------------- */
+
+  function getFormData(form) {
+    var data = {};
+
+    // Method 1: Try specific field IDs first
+    var emailInput = form.querySelector('#lead-email') || form.querySelector('input[type="email"]');
+    if (emailInput && emailInput.value) {
+      data.email = normalizeEmail(emailInput.value);
+    }
+
+    var phoneInput = form.querySelector('#lead-phone') || form.querySelector('input[type="tel"]');
+    if (phoneInput && phoneInput.value) {
+      data.phone_number = formatPhone(phoneInput.value);
+    }
+
+    var nameInput = form.querySelector('#lead-name') || form.querySelector('input[name="name"]');
+    if (nameInput && nameInput.value) {
+      var parsed = parseName(nameInput.value);
+      data.first_name = parsed.first;
+      data.last_name = parsed.last;
+    }
+
+    // Method 2: Try FormData API as fallback
+    if (!data.email || !data.phone_number) {
+      var fd = new FormData(form);
+      
+      if (!data.email && fd.get('email')) {
+        data.email = normalizeEmail(fd.get('email'));
+      }
+      
+      if (!data.phone_number && fd.get('phone')) {
+        data.phone_number = formatPhone(fd.get('phone'));
+      }
+      
+      if (!data.first_name && fd.get('name')) {
+        var parsed = parseName(fd.get('name'));
+        data.first_name = parsed.first;
+        data.last_name = parsed.last;
+      }
+    }
+
+    // Optional: Add address data if available (improves matching)
+    var postcodeInput = form.querySelector('input[name="postcode"]');
+    var addressInput = form.querySelector('input[name="address"]');
+    var cityInput = form.querySelector('input[name="city"]');
+
+    if (postcodeInput || addressInput || cityInput) {
+      data.address = {
+        first_name: data.first_name || '',
+        last_name: data.last_name || '',
+        street: addressInput ? addressInput.value : '',
+        city: cityInput ? cityInput.value : '',
+        postal_code: postcodeInput ? postcodeInput.value : '',
+        country: 'GB'
+      };
+    }
+
+    return data;
+  }
+
+  /* -----------------------------
+     Push enhanced conversion data
+  ----------------------------- */
+
+  function pushEnhancedData(form, data) {
+    window.dataLayer.push({
+      event: 'form_submit',
+      form_id: form.id || 'unknown',
+      form_name: form.getAttribute('name') || form.getAttribute('aria-label') || 'lead-form',
+      enhanced_conversion_data: data
+    });
+
+    // Debug logging (remove in production if needed)
+    if (window.console && console.log) {
+      console.log('✓ Enhanced Conversion Data Pushed:', {
+        event: 'form_submit',
+        form_id: form.id || 'unknown',
+        enhanced_conversion_data: data
+      });
+    }
+  }
+
+  /* -----------------------------
+     Safe tracking (prevents duplicates)
+  ----------------------------- */
+
+  function attachTracking(form) {
+    if (!form) return;
+
+    // Prevent attaching multiple listeners to same form
+    if (form.dataset.gtmTracked === 'true') return;
+    form.dataset.gtmTracked = 'true';
+
+    form.addEventListener('submit', function (e) {
+      // Prevent duplicate dataLayer push on same submission
+      if (form.dataset.gtmSubmitting === 'true') return;
+      form.dataset.gtmSubmitting = 'true';
+
+      var data = getFormData(form);
+      
+      // Only push if we have at least email or phone
+      if (data.email || data.phone_number) {
+        pushEnhancedData(form, data);
+      }
+
+      // Reset flag after submission completes
+      setTimeout(function () {
+        form.dataset.gtmSubmitting = 'false';
+      }, 1000);
+    });
+  }
+
+  /* -----------------------------
+     Initialize tracking
+  ----------------------------- */
+
+  function init() {
+    // Strategy 1: Find forms with specific attributes
+    var forms = document.querySelectorAll('form[data-track-conversion], form[aria-label*="Lead"]');
+    forms.forEach(function (form) {
+      attachTracking(form);
+    });
+
+    // Strategy 2: Find forms containing lead capture fields
+    var leadForms = document.querySelectorAll('form:has(#lead-email), form:has(#lead-phone), form:has(#lead-name)');
+    leadForms.forEach(function (form) {
+      attachTracking(form);
+    });
+
+    // Strategy 3: Fallback - track all forms with email/phone inputs
+    if (forms.length === 0 && leadForms.length === 0) {
+      var allForms = document.querySelectorAll('form');
+      allForms.forEach(function (form) {
+        var hasEmail = form.querySelector('input[type="email"]');
+        var hasPhone = form.querySelector('input[type="tel"]');
+        if (hasEmail || hasPhone) {
+          attachTracking(form);
+        }
+      });
+    }
+  }
+
+  /* -----------------------------
+     Run on DOM ready
+  ----------------------------- */
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+
+  // Re-initialize on Inertia/SPA navigation (if applicable)
+  document.addEventListener('inertia:success', function () {
+    setTimeout(init, 100);
+  });
+
+})();
+</script>
