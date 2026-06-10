@@ -1,4 +1,4 @@
-const LOGO = '/images/Brand-Logo-2.avif';
+// TODO: replace with real logo when available
 
 const NAV_COLS = [
     {
@@ -45,7 +45,8 @@ export default function SiteFooter() {
                     <div className="flex_footer">
                         {/* Brand column */}
                         <div className="footer_brand">
-                            <img src={LOGO} alt="Heat Spark Energy Services" className="image footer_logo" loading="lazy" />
+                            {/* TODO: replace with real logo */}
+                            <div style={{ display: 'inline-flex', alignItems: 'center', padding: '0.4rem 0.85rem', border: '2px solid var(--abl-accent, #ffb442)', borderRadius: '6px', color: 'var(--abl-accent, #ffb442)', fontFamily: 'var(--abl-font-heading)', fontWeight: 700, fontSize: '1rem', letterSpacing: '0.05em', marginBottom: '0.75rem' }}>HEAT SPARK</div>
                             <div className="footer_tagline base_p">
                                 Expert domestic and commercial plumbing, gas and electrical services.
                             </div>

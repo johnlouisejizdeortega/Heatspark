@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Skill(run)",
+      "Skill(run:*)",
+      "Bash(node -e ' *)",
+      "Bash(findstr \":800\")",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:8020/)"
+    ]
+  }
+}

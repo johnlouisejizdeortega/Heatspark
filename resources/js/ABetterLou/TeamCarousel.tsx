@@ -1,26 +1,11 @@
 import { useCallback, useState } from 'react';
 
+// TODO: replace placeholder labels with real images
 const SERVICES = [
-    {
-        name: 'Plumbing',
-        role: 'Emergency repairs, bathroom & kitchen fits',
-        img: '/images/optimised/598845316_716187218209060_515352522120168966_n.webp',
-    },
-    {
-        name: 'Boiler Installation',
-        role: 'Worcester Bosch, Vaillant, and all leading brands',
-        img: '/images/WorcesterBoschGreenstarBoiler.webp',
-    },
-    {
-        name: 'Gas Services',
-        role: 'Gas Safe engineers — CP12 certs, servicing & repairs',
-        img: '/images/optimised/gas-boiler-vaillant-vmw-23cs-1-5-cf-ecotec-plus-removebg-preview.webp',
-    },
-    {
-        name: 'Electrical',
-        role: 'NICEIC approved — rewires, consumer units, EICRs',
-        img: '/images/optimised/602356195_716187341542381_988282437403626983_n.webp',
-    },
+    { name: 'Plumbing',          role: 'Emergency repairs, bathroom & kitchen fits',          img: '' },
+    { name: 'Boiler Installation', role: 'Worcester Bosch, Vaillant, and all leading brands', img: '' },
+    { name: 'Gas Services',       role: 'Gas Safe engineers — CP12 certs, servicing & repairs', img: '' },
+    { name: 'Electrical',         role: 'NICEIC approved — rewires, consumer units, EICRs',   img: '' },
 ];
 
 const SLIDE_WIDTH = 280 + 24;
@@ -31,13 +16,12 @@ function ServiceCard({ name, role, img }: (typeof SERVICES)[number]) {
             <div className="box_inside">
                 <div className="video_overlay">
                     <div className="small_overlay" />
-                    <img
-                        src={img}
-                        alt={name}
+                    <div
                         className="video preview_video"
-                        loading="lazy"
-                        style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
-                    />
+                        style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--abl-brown-dark, #3d2010)', color: 'var(--abl-accent, #ffb442)', fontFamily: 'var(--abl-font-heading)', fontSize: '0.85rem', textAlign: 'center', padding: '1rem' }}
+                    >
+                        [{name} image]
+                    </div>
                 </div>
                 <div className="name_description">
                     <div className="member_name">{name}</div>

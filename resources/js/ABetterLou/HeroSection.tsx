@@ -1,9 +1,6 @@
 const CDN = 'https://cdn.prod.website-files.com/6939a31d6f0751cc94b4a574';
 const ARROW = `${CDN}/6951317f9e7c4fc62f2c0c81_arrow.svg`;
 
-const HERO_DESKTOP = '/images/optimised/tinywow_Gemini_Generated_Image_axglyxaxglyxaxgl_88102741.webp';
-const HERO_MOBILE  = '/images/optimised/598842520_716187328209049_5024497161616544655_n.webp';
-
 const ICON_GAS  = `${CDN}/69513464dfe460db80641edd_icon-1.png`;
 const ICON_CERT = `${CDN}/69513464a9e2df94324a1a7a_icon-2.png`;
 const ICON_CALL = `${CDN}/69513464d6b94872f95059f7_icon-3.png`;
@@ -76,19 +73,19 @@ export default function HeroSection({ onGetQuote }: HeroSectionProps) {
 
             <div className="background_hero">
                 <div className="overlay" />
-                <img
-                    src={HERO_MOBILE}
-                    loading="lazy"
-                    alt="Heat Spark engineer on site"
+                {/* TODO: replace with real hero images */}
+                <div
                     className="image large_mobile"
-                />
-                <img
-                    src={HERO_DESKTOP}
-                    loading="eager"
-                    alt="Heat Spark Energy Services — plumbing, gas and electrical"
+                    style={{ background: 'linear-gradient(135deg, #1a0d00 0%, #3d2010 100%)', color: 'var(--abl-accent)', fontFamily: 'var(--abl-font-heading)', fontSize: '0.9rem', textAlign: 'center', paddingTop: '45%' }}
+                >
+                    [Hero image — mobile]
+                </div>
+                <div
                     className="image desktop"
-                    fetchPriority="high"
-                />
+                    style={{ background: 'linear-gradient(135deg, #1a0d00 0%, #3d2010 60%, #271500 100%)', color: 'var(--abl-accent)', fontFamily: 'var(--abl-font-heading)', fontSize: '1.1rem', textAlign: 'center', paddingTop: '40%' }}
+                >
+                    [Hero image — desktop]
+                </div>
             </div>
         </main>
     );

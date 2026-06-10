@@ -1,6 +1,6 @@
 const CDN = 'https://cdn.prod.website-files.com/6939a31d6f0751cc94b4a574';
 const ARROW = `${CDN}/6951317f9e7c4fc62f2c0c81_arrow.svg`;
-const SIDE_IMG = '/images/optimised/598845316_716187218209060_515352522120168966_n.webp';
+// TODO: replace with real engineer/team photo
 
 const BULLETS = [
     'All gas engineers Gas Safe registered — legally compliant on every job',
@@ -64,13 +64,13 @@ export default function MovementSection({ onGetQuote }: MovementSectionProps) {
             </div>
 
             <div className="right">
-                <img
-                    src={SIDE_IMG}
-                    loading="lazy"
-                    width={799}
-                    alt="Heat Spark engineer completing work on site"
+                {/* TODO: replace with real engineer photo */}
+                <div
                     className="image"
-                />
+                    style={{ width: '100%', height: '100%', minHeight: '480px', background: 'var(--abl-brown-dark, #3d2010)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--abl-accent, #ffb442)', fontFamily: 'var(--abl-font-heading)', fontSize: '1rem', textAlign: 'center' }}
+                >
+                    [Engineer / team photo]
+                </div>
             </div>
         </section>
     );

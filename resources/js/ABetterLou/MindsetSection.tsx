@@ -1,6 +1,6 @@
 const CDN = 'https://cdn.prod.website-files.com/6939a31d6f0751cc94b4a574';
 const ARROW = `${CDN}/6951317f9e7c4fc62f2c0c81_arrow.svg`;
-const IMAGE_FS = '/images/optimised/598934951_716187244875724_5873043382233951837_n.webp';
+// TODO: replace with real fullscreen background photo
 
 type MindsetSectionProps = {
     onGetQuote: () => void;
@@ -12,12 +12,13 @@ export default function MindsetSection({ onGetQuote }: MindsetSectionProps) {
             {/* Fullscreen founder / mission section */}
             <section className="fs_section">
                 <div className="fs_bg">
-                    <img
-                        src={IMAGE_FS}
-                        alt="Heat Spark engineer at work"
+                    {/* TODO: replace with real fullscreen background photo */}
+                    <div
                         className="image fs_bg_img"
-                        loading="lazy"
-                    />
+                        style={{ background: 'linear-gradient(135deg, #1a0900 0%, #2e1508 50%, #1a0900 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'rgba(240,221,192,0.3)', fontFamily: 'var(--abl-font-heading)', fontSize: '1rem' }}
+                    >
+                        [Fullscreen background photo]
+                    </div>
                     <div className="fs_overlay" />
                 </div>
 

@@ -1,28 +1,8 @@
+// TODO: replace img with real article thumbnail images
 const POSTS = [
-    {
-        img: '/images/WorcesterBoschGreenstarBoiler.webp',
-        tag: 'Gas',
-        date: 'June 2025',
-        title: '5 Signs Your Boiler Needs Replacing',
-        desc: 'An ageing boiler can cost you more in repairs than a replacement. Here\'s what to look out for before it lets you down.',
-        href: '/contact',
-    },
-    {
-        img: '/images/optimised/gas-boiler-vaillant-vmw-23cs-1-5-cf-ecotec-plus-removebg-preview.webp',
-        tag: 'Landlords',
-        date: 'May 2025',
-        title: 'What is a CP12 Gas Safety Certificate?',
-        desc: 'If you rent out a property, a gas safety check is a legal requirement. Here\'s everything you need to know about CP12 certificates.',
-        href: '/contact',
-    },
-    {
-        img: '/images/Logic_System_IE_Front_Facing.webp',
-        tag: 'Electrical',
-        date: 'April 2025',
-        title: 'Do You Need an EICR? Everything Explained',
-        desc: 'An Electrical Installation Condition Report is required for rental properties every 5 years. Find out what\'s involved and how to book.',
-        href: '/contact',
-    },
+    { img: '', tag: 'Gas',       date: 'June 2025',  title: '5 Signs Your Boiler Needs Replacing',          desc: 'An ageing boiler can cost you more in repairs than a replacement. Here\'s what to look out for before it lets you down.',           href: '/contact' },
+    { img: '', tag: 'Landlords', date: 'May 2025',   title: 'What is a CP12 Gas Safety Certificate?',       desc: 'If you rent out a property, a gas safety check is a legal requirement. Here\'s everything you need to know about CP12 certificates.', href: '/contact' },
+    { img: '', tag: 'Electrical',date: 'April 2025', title: 'Do You Need an EICR? Everything Explained',    desc: 'An Electrical Installation Condition Report is required for rental properties every 5 years. Find out what\'s involved and how to book.', href: '/contact' },
 ];
 
 export default function BlogSection() {
@@ -41,13 +21,13 @@ export default function BlogSection() {
                             className="article_card"
                         >
                             <div className="cover_image">
-                                <img
-                                    src={post.img}
-                                    alt={post.title}
-                                    loading="lazy"
+                                {/* TODO: replace with real thumbnail */}
+                                <div
                                     className="image blog_img"
-                                    style={{ objectFit: 'contain', background: '#f0ddc0' }}
-                                />
+                                    style={{ background: 'var(--abl-brown-dark, #3d2010)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--abl-accent, #ffb442)', fontFamily: 'var(--abl-font-heading)', fontSize: '0.8rem', textAlign: 'center', padding: '1rem' }}
+                                >
+                                    [{post.tag} article image]
+                                </div>
                             </div>
                             <div className="card_body">
                                 <div className="tags_blog">

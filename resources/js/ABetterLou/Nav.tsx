@@ -4,10 +4,15 @@ const CDN = 'https://cdn.prod.website-files.com/6939a31d6f0751cc94b4a574';
 const ARROW = `${CDN}/6951317f9e7c4fc62f2c0c81_arrow.svg`;
 const PLUS_ICON = `${CDN}/695eb6d83d09b4baa1cb25b0_plus_included.png`;
 
-const LOGO = '/images/Brand-Logo-2.avif';
-const PLM_IMG = '/images/WorcesterBoschGreenstarBoiler.webp';
-const GAS_IMG = '/images/optimised/gas-boiler-vaillant-vmw-23cs-1-5-cf-ecotec-plus-removebg-preview.webp';
-const ELE_IMG = '/images/Logic_System_IE_Front_Facing.webp';
+// TODO: replace with real logo when available
+const LOGO_PLACEHOLDER_STYLE: React.CSSProperties = {
+    display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+    padding: '0.4rem 0.85rem', border: '2px solid var(--abl-accent, #ffb442)',
+    borderRadius: '6px', color: 'var(--abl-accent, #ffb442)',
+    fontFamily: 'var(--abl-font-heading)', fontWeight: 700,
+    fontSize: '0.9rem', letterSpacing: '0.05em', whiteSpace: 'nowrap',
+    textDecoration: 'none',
+};
 
 type NavProps = {
     onMenuOpen: () => void;
@@ -61,9 +66,7 @@ export default function Nav({ onMenuOpen, onGetQuote }: NavProps) {
                 <div className="flex_header">
                     {/* Logo */}
                     <div className="logo_box">
-                        <a href="/" className="logotype">
-                            <img src={LOGO} alt="Heat Spark Energy Services" className="image" width="160" height="64" fetchPriority="high" />
-                        </a>
+                        <a href="/" style={LOGO_PLACEHOLDER_STYLE}>HEAT SPARK</a>
                     </div>
 
                     {/* Desktop nav */}
@@ -133,8 +136,8 @@ export default function Nav({ onMenuOpen, onGetQuote }: NavProps) {
                                     </div>
                                 </div>
                                 <div className="overlay_membership" />
-                                <div className="image_back">
-                                    <img src={PLM_IMG} loading="lazy" alt="Boiler installation" className="image" style={{ objectFit: 'contain', background: '#f0ddc0' }} />
+                                <div className="image_back" style={{ background: 'var(--abl-brown-dark)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--abl-accent)', fontFamily: 'var(--abl-font-heading)', fontSize: '0.8rem' }}>
+                                    [Plumbing image]
                                 </div>
                             </a>
                             <a href="/services" className="membership_link" onClick={closeSubmenu}>
@@ -152,8 +155,8 @@ export default function Nav({ onMenuOpen, onGetQuote }: NavProps) {
                                     </div>
                                 </div>
                                 <div className="overlay_membership" />
-                                <div className="image_back">
-                                    <img src={GAS_IMG} loading="lazy" alt="Gas boiler" className="image" style={{ objectFit: 'contain', background: '#f0ddc0' }} />
+                                <div className="image_back" style={{ background: 'var(--abl-brown-dark)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--abl-accent)', fontFamily: 'var(--abl-font-heading)', fontSize: '0.8rem' }}>
+                                    [Gas &amp; Electrical image]
                                 </div>
                             </a>
                         </div>

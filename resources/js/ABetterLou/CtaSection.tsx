@@ -1,6 +1,6 @@
 const CDN = 'https://cdn.prod.website-files.com/6939a31d6f0751cc94b4a574';
 const ARROW = `${CDN}/6951317f9e7c4fc62f2c0c81_arrow.svg`;
-const CTA_BG = '/images/optimised/598934951_716187244875724_5873043382233951837_n.webp';
+// TODO: replace with real CTA background photo
 
 type CtaSectionProps = {
     onGetQuote: () => void;
@@ -10,15 +10,13 @@ export default function CtaSection({ onGetQuote }: CtaSectionProps) {
     return (
         <section className="cta_section">
             <div className="cta_bg">
-                <picture>
-                    <img
-                        src={CTA_BG}
-                        alt=""
-                        role="presentation"
-                        loading="lazy"
-                        className="image cta_bg_img"
-                    />
-                </picture>
+                {/* TODO: replace with real CTA background photo */}
+                <div
+                    className="image cta_bg_img"
+                    style={{ background: 'linear-gradient(135deg, #1a0900 0%, #3d1a08 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'rgba(240,221,192,0.25)', fontFamily: 'var(--abl-font-heading)', fontSize: '0.9rem' }}
+                >
+                    [CTA background photo]
+                </div>
                 <div className="cta_overlay" />
             </div>
             <div className="wrapper_general">
