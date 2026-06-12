@@ -1,4 +1,11 @@
-// TODO: replace img with real article thumbnail images
+import PlaceholderGraphic, { type GraphicType } from '@/ABetterLou/PlaceholderGraphic';
+
+const TAG_TO_GRAPHIC: Record<string, GraphicType> = {
+    Gas: 'blog-gas',
+    Landlords: 'blog-landlord',
+    Electrical: 'blog-electrical',
+};
+
 const POSTS = [
     { img: '', tag: 'Gas',       date: 'June 2025',  title: '5 Signs Your Boiler Needs Replacing',          desc: 'An ageing boiler can cost you more in repairs than a replacement. Here\'s what to look out for before it lets you down.',           href: '/contact' },
     { img: '', tag: 'Landlords', date: 'May 2025',   title: 'What is a CP12 Gas Safety Certificate?',       desc: 'If you rent out a property, a gas safety check is a legal requirement. Here\'s everything you need to know about CP12 certificates.', href: '/contact' },
@@ -11,7 +18,7 @@ export default function BlogSection() {
             <div className="wrapper_general">
                 <div className="blog_header">
                     <div className="blog_tag">Tips &amp; Advice</div>
-                    <h2 className="h2">Latest Insights</h2>
+                    <h2 className="h2">Latest <span className="highlight">Insights</span></h2>
                 </div>
                 <div className="blog_grid">
                     {POSTS.map(post => (
@@ -22,12 +29,7 @@ export default function BlogSection() {
                         >
                             <div className="cover_image">
                                 {/* TODO: replace with real thumbnail */}
-                                <div
-                                    className="image blog_img"
-                                    style={{ background: 'var(--abl-brown-dark, #3d2010)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--abl-accent, #ffb442)', fontFamily: 'var(--abl-font-heading)', fontSize: '0.8rem', textAlign: 'center', padding: '1rem' }}
-                                >
-                                    [{post.tag} article image]
-                                </div>
+                                <PlaceholderGraphic type={TAG_TO_GRAPHIC[post.tag] ?? 'blog-gas'} className="image blog_img" />
                             </div>
                             <div className="card_body">
                                 <div className="tags_blog">

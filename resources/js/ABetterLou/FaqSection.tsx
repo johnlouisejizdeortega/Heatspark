@@ -76,7 +76,7 @@ export default function FaqSection() {
             <div className="wrapper_general">
                 <div className="faq_header">
                     <div className="faq_tag">FAQ</div>
-                    <h2 className="h2 title_faq">Common Questions</h2>
+                    <h2 className="h2 title_faq">Common <span className="highlight">Questions</span></h2>
                 </div>
                 <div className="faq_groups">
                     {GROUPS.map(group => (

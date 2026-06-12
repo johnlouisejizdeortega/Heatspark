@@ -1,6 +1,3 @@
-const CDN = 'https://cdn.prod.website-files.com/6939a31d6f0751cc94b4a574';
-const ARROW = `${CDN}/6951317f9e7c4fc62f2c0c81_arrow.svg`;
-
 const DATA_ITEMS = [
     {
         number: 1,
@@ -84,10 +81,6 @@ export default function MetabolicSection({ onGetQuote }: MetabolicSectionProps) 
                                 style={{ cursor: 'pointer', border: 'none' }}
                             >
                                 <div className="buble_button">Get a Free Quote</div>
-                                <div className="circle_general">
-                                    <div className="arrow_general"><img src={ARROW} loading="lazy" alt="" className="image" /></div>
-                                    <div className="abs_arrow"><img src={ARROW} loading="lazy" alt="" className="image" /></div>
-                                </div>
                             </button>
                             <a href="tel:07865435946" className="button general">
                                 <div className="buble_button">Call 07865 435 946</div>

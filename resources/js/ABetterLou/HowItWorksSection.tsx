@@ -53,9 +53,10 @@ export default function HowItWorksSection({ onGetQuote }: HowItWorksSectionProps
                     <div className="headline_progress">
                         <div className="sticky_progress">
                             <div className="progress_heading">
+                                <div className="section_tag">Our Process</div>
                                 <h2 className="h2 brown">
                                     How we get
-                                    <br />the job done
+                                    <br />the job <span className="highlight">done</span>
                                 </h2>
                             </div>
                             <div className="progress_desc">
@@ -68,10 +69,10 @@ export default function HowItWorksSection({ onGetQuote }: HowItWorksSectionProps
                                     type="button"
                                     onClick={onGetQuote}
                                     className="button general"
-                                    style={{ background: '#3d2010', color: '#f0ddc0', cursor: 'pointer', border: 'none' }}
+                                    style={{ background: '#1a1a1a', color: '#ffffff', cursor: 'pointer', border: 'none' }}
                                 >
                                     <div className="buble_button">Get a Free Quote</div>
-                                    <div className="circle_general" style={{ background: '#f0ddc0' }}>
+                                    <div className="circle_general" style={{ background: '#ffffff' }}>
                                         <div className="arrow_general">
                                             <img src={ARROW} loading="lazy" alt="" className="image" />
                                         </div>
@@ -83,7 +84,7 @@ export default function HowItWorksSection({ onGetQuote }: HowItWorksSectionProps
                                 <a
                                     href="tel:07865435946"
                                     className="button general"
-                                    style={{ background: '#3d2010', color: '#f0ddc0' }}
+                                    style={{ background: '#1a1a1a', color: '#ffffff' }}
                                 >
                                     <div className="buble_button">Call 07865 435 946</div>
                                 </a>

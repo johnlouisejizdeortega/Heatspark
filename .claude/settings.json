@@ -5,7 +5,15 @@
       "Skill(run:*)",
       "Bash(node -e ' *)",
       "Bash(findstr \":800\")",
-      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:8020/)"
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:8020/)",
+      "Bash(Start-Process -WindowStyle Hidden powershell -ArgumentList '-Command', 'php artisan serve --port=8020 2>&1 | Out-File c:/tmp/hs_serve.log -Append')",
+      "Bash(xargs grep -l \"ABetterLou\\\\|abl.css\")",
+      "Bash(grep -v \"/\\\\*\")",
+      "Bash(grep -v \"var\\(--abl\\\\|#25d366\\\\|#f87171\\\\|transparent\\\\|inherit\\\\|none\\\\|#000000\\\\|#ffffff\\\\|#ff6a00\\\\|#1a1a1a\\\\|#0a0a0a\\\\|#0d0d0d\\\\|#111111\\\\|rgba\\(0,0,0\\\\|rgba\\(0, 0, 0\\\\|rgba\\(255,255,255\\\\|rgba\\(255, 255, 255\\\\|rgba\\(255,106,0\\\\|rgba\\(255, 106, 0\\\\|//\\\\|\\\\/\\\\*\")",
+      "Bash(grep -rn \"Heatspark/Home\\\\|Heatspark\\\\\\\\\\\\\\\\Home\" c:/Projects/Heatspark/routes/ c:/Projects/Heatspark/app/)",
+      "Bash(grep -v \"//\\\\|import\")",
+      "Bash(grep -v \"//\\\\|\\\\/\\\\*\")",
+      "Bash(grep -v \"//\\\\|borderTop\\\\|borderBottom\")"
     ]
   }
 }

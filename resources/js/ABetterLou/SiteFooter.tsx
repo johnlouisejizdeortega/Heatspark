@@ -45,8 +45,7 @@ export default function SiteFooter() {
                     <div className="flex_footer">
                         {/* Brand column */}
                         <div className="footer_brand">
-                            {/* TODO: replace with real logo */}
-                            <div style={{ display: 'inline-flex', alignItems: 'center', padding: '0.4rem 0.85rem', border: '2px solid var(--abl-accent, #ffb442)', borderRadius: '6px', color: 'var(--abl-accent, #ffb442)', fontFamily: 'var(--abl-font-heading)', fontWeight: 700, fontSize: '1rem', letterSpacing: '0.05em', marginBottom: '0.75rem' }}>HEAT SPARK</div>
+                            <img src="/images/Untitled-1.webp" alt="Heat Spark Energy Services" style={{ height: '72px', width: 'auto', display: 'block', alignSelf: 'flex-start', marginBottom: '0.75rem' }} />
                             <div className="footer_tagline base_p">
                                 Expert domestic and commercial plumbing, gas and electrical services.
                             </div>

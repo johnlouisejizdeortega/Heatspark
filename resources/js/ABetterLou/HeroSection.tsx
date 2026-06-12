@@ -1,5 +1,4 @@
 const CDN = 'https://cdn.prod.website-files.com/6939a31d6f0751cc94b4a574';
-const ARROW = `${CDN}/6951317f9e7c4fc62f2c0c81_arrow.svg`;
 
 const ICON_GAS  = `${CDN}/69513464dfe460db80641edd_icon-1.png`;
 const ICON_CERT = `${CDN}/69513464a9e2df94324a1a7a_icon-2.png`;
@@ -21,7 +20,7 @@ export default function HeroSection({ onGetQuote }: HeroSectionProps) {
             <div className="wrapper_hero">
                 <div className="heading_hero">
                     <h1 className="h1">
-                        Expert Plumbing, Gas<br />&amp; Electrical Services
+                        Expert <span className="highlight">Plumbing, Gas<br />&amp; Electrical</span> Services
                     </h1>
 
                     <div className="ch_box_hero">
@@ -37,14 +36,6 @@ export default function HeroSection({ onGetQuote }: HeroSectionProps) {
                         style={{ cursor: 'pointer', border: 'none' }}
                     >
                         <div className="buble_button">Get a Free Quote</div>
-                        <div className="circle_general">
-                            <div className="arrow_general">
-                                <img src={ARROW} loading="lazy" alt="" className="image" />
-                            </div>
-                            <div className="abs_arrow">
-                                <img src={ARROW} loading="lazy" alt="" className="image" />
-                            </div>
-                        </div>
                     </button>
 
                     <a href="tel:07865435946" className="button general" style={{ marginLeft: '0.75rem' }}>
@@ -73,19 +64,15 @@ export default function HeroSection({ onGetQuote }: HeroSectionProps) {
 
             <div className="background_hero">
                 <div className="overlay" />
-                {/* TODO: replace with real hero images */}
-                <div
-                    className="image large_mobile"
-                    style={{ background: 'linear-gradient(135deg, #1a0d00 0%, #3d2010 100%)', color: 'var(--abl-accent)', fontFamily: 'var(--abl-font-heading)', fontSize: '0.9rem', textAlign: 'center', paddingTop: '45%' }}
+                <video
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
                 >
-                    [Hero image — mobile]
-                </div>
-                <div
-                    className="image desktop"
-                    style={{ background: 'linear-gradient(135deg, #1a0d00 0%, #3d2010 60%, #271500 100%)', color: 'var(--abl-accent)', fontFamily: 'var(--abl-font-heading)', fontSize: '1.1rem', textAlign: 'center', paddingTop: '40%' }}
-                >
-                    [Hero image — desktop]
-                </div>
+                    <source src="https://res.cloudinary.com/dqw9fo2w1/video/upload/v1781260911/14077529_4096_2160_30fps_ipurs6.mp4" type="video/mp4" />
+                </video>
             </div>
         </main>
     );

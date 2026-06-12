@@ -1,17 +1,14 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
+import PlaceholderGraphic from '@/ABetterLou/PlaceholderGraphic';
 
 const CDN = 'https://cdn.prod.website-files.com/6939a31d6f0751cc94b4a574';
 const ARROW = `${CDN}/6951317f9e7c4fc62f2c0c81_arrow.svg`;
-const PLUS_ICON = `${CDN}/695eb6d83d09b4baa1cb25b0_plus_included.png`;
 
-// TODO: replace with real logo when available
-const LOGO_PLACEHOLDER_STYLE: React.CSSProperties = {
-    display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
-    padding: '0.4rem 0.85rem', border: '2px solid var(--abl-accent, #ffb442)',
-    borderRadius: '6px', color: 'var(--abl-accent, #ffb442)',
-    fontFamily: 'var(--abl-font-heading)', fontWeight: 700,
-    fontSize: '0.9rem', letterSpacing: '0.05em', whiteSpace: 'nowrap',
-    textDecoration: 'none',
+const LOGO_WRAP: React.CSSProperties = {
+    flexShrink: 0,
+};
+const LOGO_STYLE: React.CSSProperties = {
+    height: '62px', width: 'auto', display: 'block',
 };
 
 type NavProps = {
@@ -19,18 +16,6 @@ type NavProps = {
     onGetQuote: () => void;
 };
 
-function ArrowCircle({ className = 'circle_general' }: { className?: string }) {
-    return (
-        <div className={className}>
-            <div className="arrow_general">
-                <img src={ARROW} alt="" className="image" loading="lazy" />
-            </div>
-            <div className="abs_arrow">
-                <img src={ARROW} alt="" className="image" loading="lazy" />
-            </div>
-        </div>
-    );
-}
 
 export default function Nav({ onMenuOpen, onGetQuote }: NavProps) {
     const [submenuOpen, setSubmenuOpen] = useState(false);
@@ -66,7 +51,7 @@ export default function Nav({ onMenuOpen, onGetQuote }: NavProps) {
                 <div className="flex_header">
                     {/* Logo */}
                     <div className="logo_box">
-                        <a href="/" style={LOGO_PLACEHOLDER_STYLE}>HEAT SPARK</a>
+                        <a href="/" style={LOGO_WRAP}><img src="/images/Untitled-1.webp" alt="Heat Spark Energy Services" style={LOGO_STYLE} /></a>
                     </div>
 
                     {/* Desktop nav */}
@@ -82,7 +67,9 @@ export default function Nav({ onMenuOpen, onGetQuote }: NavProps) {
                         >
                             <div>Services</div>
                             <div className="plus_dropdown">
-                                <img src={PLUS_ICON} loading="lazy" alt="" className="image" />
+                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" style={{ transition: 'transform 0.3s', transform: submenuOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}>
+                                    <path d="M2 4l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                                </svg>
                             </div>
                         </button>
                         <a href="/portfolio" className="h_link"><div>Portfolio</div></a>
@@ -91,12 +78,8 @@ export default function Nav({ onMenuOpen, onGetQuote }: NavProps) {
 
                     {/* CTA buttons */}
                     <div className="button_cta">
-                        <a href="tel:07865435946" className="button">
-                            <div className="button_main">Call 07865 435 946</div>
-                        </a>
                         <button type="button" className="button" onClick={onGetQuote}>
                             <div className="button_main">Get a Free Quote</div>
-                            <ArrowCircle className="circle_main" />
                         </button>
                     </div>
 
@@ -136,9 +119,7 @@ export default function Nav({ onMenuOpen, onGetQuote }: NavProps) {
                                     </div>
                                 </div>
                                 <div className="overlay_membership" />
-                                <div className="image_back" style={{ background: 'var(--abl-brown-dark)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--abl-accent)', fontFamily: 'var(--abl-font-heading)', fontSize: '0.8rem' }}>
-                                    [Plumbing image]
-                                </div>
+                                <PlaceholderGraphic type="plumbing" className="image_back" />
                             </a>
                             <a href="/services" className="membership_link" onClick={closeSubmenu}>
                                 <div className="above_info">
@@ -155,9 +136,7 @@ export default function Nav({ onMenuOpen, onGetQuote }: NavProps) {
                                     </div>
                                 </div>
                                 <div className="overlay_membership" />
-                                <div className="image_back" style={{ background: 'var(--abl-brown-dark)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--abl-accent)', fontFamily: 'var(--abl-font-heading)', fontSize: '0.8rem' }}>
-                                    [Gas &amp; Electrical image]
-                                </div>
+                                <PlaceholderGraphic type="gas" className="image_back" />
                             </a>
                         </div>
                     </div>

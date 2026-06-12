@@ -1,6 +1,7 @@
+import PlaceholderGraphic from '@/ABetterLou/PlaceholderGraphic';
+
 const CDN = 'https://cdn.prod.website-files.com/6939a31d6f0751cc94b4a574';
 const ARROW = `${CDN}/6951317f9e7c4fc62f2c0c81_arrow.svg`;
-// TODO: replace with real engineer/team photo
 
 const BULLETS = [
     'All gas engineers Gas Safe registered — legally compliant on every job',
@@ -18,6 +19,7 @@ export default function MovementSection({ onGetQuote }: MovementSectionProps) {
             <div className="left">
                 <div className="wrapper_side">
                     <div className="heading_side">
+                        <div className="section_tag">Our Standards</div>
                         <h2 className="h2 biege specific_home">
                             <span className="highlight">Quality</span> is your
                             <br />guarantee
@@ -65,12 +67,7 @@ export default function MovementSection({ onGetQuote }: MovementSectionProps) {
 
             <div className="right">
                 {/* TODO: replace with real engineer photo */}
-                <div
-                    className="image"
-                    style={{ width: '100%', height: '100%', minHeight: '480px', background: 'var(--abl-brown-dark, #3d2010)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--abl-accent, #ffb442)', fontFamily: 'var(--abl-font-heading)', fontSize: '1rem', textAlign: 'center' }}
-                >
-                    [Engineer / team photo]
-                </div>
+                <PlaceholderGraphic type="engineer" style={{ minHeight: '480px' }} />
             </div>
         </section>
     );

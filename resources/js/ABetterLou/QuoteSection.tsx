@@ -11,14 +11,14 @@ export default function QuoteSection() {
                         <div
                             className="image author_photo"
                             style={{
-                                background: 'var(--abl-brown-dark, #3d2010)',
+                                background: 'var(--abl-brown-dark, #1a1a1a)',
                                 display: 'flex',
                                 alignItems: 'center',
                                 justifyContent: 'center',
                                 fontSize: '1.25rem',
                                 fontFamily: 'var(--abl-font-heading)',
                                 fontWeight: 700,
-                                color: 'var(--abl-accent, #ffb442)',
+                                color: 'var(--abl-accent, #ff6a00)',
                                 borderRadius: '50%',
                                 width: '72px',
                                 height: '72px',

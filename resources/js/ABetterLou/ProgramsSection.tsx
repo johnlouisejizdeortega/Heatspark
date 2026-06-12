@@ -39,6 +39,10 @@ export default function ProgramsSection({ onGetQuote }: ProgramsSectionProps) {
     return (
         <section className="programs_section">
             <div className="wrapper_general">
+                <div style={{ marginBottom: '2.5rem' }}>
+                    <div className="section_tag">Service Plans</div>
+                    <h2 className="h2 biege">Everything covered <span className="highlight">under one roof</span></h2>
+                </div>
                 <div className="sides_plans">
                     {/* Plumbing — dark brown card */}
                     <div className="plan_brown">

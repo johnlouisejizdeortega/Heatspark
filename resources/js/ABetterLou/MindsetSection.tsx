@@ -1,32 +1,78 @@
+import { useEffect, useRef } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
+
 const CDN = 'https://cdn.prod.website-files.com/6939a31d6f0751cc94b4a574';
 const ARROW = `${CDN}/6951317f9e7c4fc62f2c0c81_arrow.svg`;
-// TODO: replace with real fullscreen background photo
 
 type MindsetSectionProps = {
     onGetQuote: () => void;
 };
 
 export default function MindsetSection({ onGetQuote }: MindsetSectionProps) {
+    const sectionRef = useRef<HTMLElement>(null);
+    const imgRef     = useRef<HTMLImageElement>(null);
+
+    useEffect(() => {
+        const img     = imgRef.current;
+        const section = sectionRef.current;
+        if (!img || !section) return;
+
+        // start slightly scaled so edges never show during drift
+        gsap.set(img, { scale: 1.1, transformOrigin: 'center center' });
+
+        // Ken Burns: slow scale + gentle drift, looping back and forth
+        const kenBurns = gsap.to(img, {
+            scale: 1.22,
+            x: '3%',
+            y: '2%',
+            duration: 24,
+            ease: 'sine.inOut',
+            repeat: -1,
+            yoyo: true,
+        });
+
+        // Parallax: image drifts upward as user scrolls through section
+        const parallax = gsap.to(img, {
+            yPercent: -12,
+            ease: 'none',
+            scrollTrigger: {
+                trigger: section,
+                start: 'top bottom',
+                end: 'bottom top',
+                scrub: 1.5,
+            },
+        });
+
+        return () => {
+            kenBurns.kill();
+            parallax.scrollTrigger?.kill();
+        };
+    }, []);
+
     return (
         <>
             {/* Fullscreen founder / mission section */}
-            <section className="fs_section">
+            <section ref={sectionRef} className="fs_section">
                 <div className="fs_bg">
-                    {/* TODO: replace with real fullscreen background photo */}
-                    <div
+                    <img
+                        ref={imgRef}
+                        src="https://res.cloudinary.com/dqw9fo2w1/image/upload/v1781262935/liquid-marbling-paint-texture-background-fluid-painting-abstract-texture-intensive-color-mix-wallpaper_1258-103744_khdau5.avif"
+                        alt=""
                         className="image fs_bg_img"
-                        style={{ background: 'linear-gradient(135deg, #1a0900 0%, #2e1508 50%, #1a0900 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'rgba(240,221,192,0.3)', fontFamily: 'var(--abl-font-heading)', fontSize: '1rem' }}
-                    >
-                        [Fullscreen background photo]
-                    </div>
+                        loading="lazy"
+                    />
                     <div className="fs_overlay" />
                 </div>
 
                 <div className="above_fs">
                     <div className="fs_grid">
                         <div className="fs_left">
+                            <div className="section_tag">Our Mission</div>
                             <h2 className="h2">
-                                Safe, reliable work starts with the right people showing up with the right tools.
+                                Safe, reliable work starts with the <span className="highlight">right people</span> showing up with the right tools.
                             </h2>
                             <div className="fs_sep" />
                             <div className="fs_info">
@@ -42,14 +88,14 @@ export default function MindsetSection({ onGetQuote }: MindsetSectionProps) {
                                 <div
                                     className="image gary_photo_img"
                                     style={{
-                                        background: 'var(--abl-brown-dark, #3d2010)',
+                                        background: 'var(--abl-brown-dark, #1a1a1a)',
                                         display: 'flex',
                                         alignItems: 'center',
                                         justifyContent: 'center',
                                         fontSize: '2rem',
                                         fontFamily: 'var(--abl-font-heading)',
                                         fontWeight: 700,
-                                        color: 'var(--abl-accent, #ffb442)',
+                                        color: 'var(--abl-accent, #ff6a00)',
                                         borderRadius: '50%',
                                         width: '80px',
                                         height: '80px',
@@ -70,7 +116,7 @@ export default function MindsetSection({ onGetQuote }: MindsetSectionProps) {
             {/* One Goal CTA */}
             <section className="one_goal">
                 <div className="wrapper_general one_goal_inner">
-                    <h2 className="h2">One Goal. Outstanding Service.</h2>
+                    <h2 className="h2">One Goal. <span className="highlight">Outstanding Service.</span></h2>
                     <button
                         type="button"
                         onClick={onGetQuote}
